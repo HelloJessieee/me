@@ -62,11 +62,11 @@ const Scene1Hutong: React.FC = () => {
     ctx.restore();
     // 墙面涂鸦
     graffiti.forEach(({x, y, type}) => {
-      if(type==='flower') {
+      if (type === 'flower') {
         // 花朵
         ctx.save();
         ctx.translate(x, y);
-        for(let i=0;i<6;i++){
+        for (let i = 0; i < 6; i++) {
           ctx.rotate(Math.PI/3);
           ctx.beginPath();
           ctx.arc(0, 12, 7, 0, 2*Math.PI);
@@ -80,7 +80,7 @@ const Scene1Hutong: React.FC = () => {
         ctx.globalAlpha = 1;
         ctx.fill();
         ctx.restore();
-      } else if(type==='smile') {
+      } else if (type === 'smile') {
         // 笑脸
         ctx.save();
         ctx.translate(x, y);
@@ -101,13 +101,13 @@ const Scene1Hutong: React.FC = () => {
         ctx.strokeStyle = '#ad1457';
         ctx.stroke();
         ctx.restore();
-      } else if(type==='star') {
+      } else if (type === 'star') {
         // 星星
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(-Math.PI/10);
         ctx.beginPath();
-        for(let i=0;i<5;i++){
+        for (let i = 0; i < 5; i++) {
           ctx.lineTo(Math.cos((18+i*72)*Math.PI/180)*13, -Math.sin((18+i*72)*Math.PI/180)*13);
           ctx.lineTo(Math.cos((54+i*72)*Math.PI/180)*6, -Math.sin((54+i*72)*Math.PI/180)*6);
         }
@@ -116,7 +116,7 @@ const Scene1Hutong: React.FC = () => {
         ctx.globalAlpha = 0.9;
         ctx.fill();
         ctx.restore();
-      } else if(type==='childhood') {
+      } else if (type === 'childhood') {
         // 英文单词
         ctx.save();
         ctx.font = 'bold 18px Comic Sans MS, Comic Sans, cursive';
@@ -219,24 +219,24 @@ const Scene1Hutong: React.FC = () => {
     canvas.style.cursor = 'url("https://cdn-icons-png.flaticon.com/128/3132/3132693.png") 8 24, pointer';
   }, []);
 
-  // 只允许墙面画画
-  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    // 点风筝
-    if (!kiteClicked && x >= KITE.x-KITE.w && x <= KITE.x+KITE.w && y >= (kiteFly ? KITE.y-60 : KITE.y) && y <= (kiteFly ? KITE.y-60 : KITE.y)+KITE.h) {
-      setKiteFly(true);
-      setShowDream(true);
-      setKiteClicked(true);
-      return;
-    }
-    // 只允许墙面
-    if (y >= WALL_Y && y <= WALL_Y + WALL_HEIGHT) {
-      const type = GRAFFITI_TYPES[Math.floor(Math.random()*GRAFFITI_TYPES.length)];
-      setGraffiti(g => [...g, {x, y, type}]);
-    }
-  };
+      // 只允许墙面画画
+    const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      // 点风筝
+      if (!kiteClicked && x >= KITE.x-KITE.w && x <= KITE.x+KITE.w && y >= (kiteFly ? KITE.y-60 : KITE.y) && y <= (kiteFly ? KITE.y-60 : KITE.y)+KITE.h) {
+        setKiteFly(true);
+        setShowDream(true);
+        setKiteClicked(true);
+        return;
+      }
+      // 只允许墙面
+      if (y >= WALL_Y && y <= WALL_Y + WALL_HEIGHT) {
+        const type = GRAFFITI_TYPES[Math.floor(Math.random() * GRAFFITI_TYPES.length)];
+        setGraffiti(g => [...g, {x, y, type}]);
+      }
+    };
 
   // 悬停高亮墙面
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {

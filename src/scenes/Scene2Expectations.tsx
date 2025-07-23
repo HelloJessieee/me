@@ -92,7 +92,11 @@ const Scene2Expectations: React.FC = () => {
               animation: fw.animate ? 'popIn 0.5s cubic-bezier(.7,1.5,.5,1)' : undefined,
               transition: 'opacity 0.5s',
             }}
-            onAnimationEnd={() => { fw.animate = false; }}
+            onAnimationEnd={() => {
+              const updatedWords = [...floatWords];
+              updatedWords[i].animate = false;
+              setFloatWords(updatedWords);
+            }}
           >
             {fw.text}
           </div>

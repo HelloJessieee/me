@@ -1,0 +1,14 @@
+/static/css/*
+  Content-Type: text/css
+
+/static/js/*
+  Content-Type: application/javascript
+
+/static/media/*
+  Content-Type: image/*
+
+/manifest.json
+  Content-Type: application/manifest+json
+
+/asset-manifest.json
+  Content-Type: application/json 
